@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <SDL2/SDL.h>
-
-/* Define the width and height of the window */
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
+#include "maze.h"
 
 int main(int argc, char *argv[])
 {
@@ -64,6 +59,9 @@ int main(int argc, char *argv[])
 
 		/* Clear the screen with the set color */
 		SDL_RenderClear(renderer);
+
+		/* Call the castRays function */
+		castRays(renderer);
 
 		/* Present the updated frame (swap buffers) */
 		SDL_RenderPresent(renderer);
