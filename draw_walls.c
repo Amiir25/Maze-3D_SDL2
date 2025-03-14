@@ -38,8 +38,8 @@ void drawWalls(SDL_Renderer *renderer) {
         float dist = sqrt(pow(rayX - playerX, 2) + pow(rayY - playerY, 2));
         int wallHeight = (int)(TILE_SIZE * SCREEN_HEIGHT / dist);
         
-        // Set wall color (simple shading based on angle)
-        SDL_SetRenderDrawColor(renderer, 200, 0, 0, 255);
+        // Set wall color to dark gray
+        SDL_SetRenderDrawColor(renderer, 50, 50, 50, 255);
         SDL_RenderDrawLine(renderer, x, (SCREEN_HEIGHT / 2) - (wallHeight / 2), x, (SCREEN_HEIGHT / 2) + (wallHeight / 2));
     }
 }
