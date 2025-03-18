@@ -1,16 +1,30 @@
 #include "maze.h"
 
-void render(SDL_Renderer *renderer) {
-    // Draw sky (blue)
-    SDL_SetRenderDrawColor(renderer, 135, 206, 235, 255);
-    SDL_Rect sky = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 2};
-    SDL_RenderFillRect(renderer, &sky);
+/**
+ * render - Renders the game frame.
+ * @renderer: The SDL renderer.
+ *
+ * Draws the sky, ground, and walls to the screen.
+ *
+ * Return: Nothing
+ */
 
-    // Draw ground (green)
-    SDL_SetRenderDrawColor(renderer, 34, 139, 34, 255);
-    SDL_Rect ground = {0, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT / 2};
-    SDL_RenderFillRect(renderer, &ground);
+void render(SDL_Renderer *renderer)
+{
+	SDL_Rect sky, ground;
 
-    drawWalls(renderer);
-    SDL_RenderPresent(renderer);
+	/* Draw sky (blue) */
+	SDL_SetRenderDrawColor(renderer, 135, 206, 235, 255);
+	sky.x = 0, sky.y = 0;
+	sky.w = SCREEN_WIDTH, sky.h = SCREEN_HEIGHT / 2;
+	SDL_RenderFillRect(renderer, &sky);
+
+	/* Draw ground (green) */
+	SDL_SetRenderDrawColor(renderer, 34, 139, 34, 255);
+	ground.x = 0, ground.y = SCREEN_HEIGHT / 2;
+	ground.w = SCREEN_WIDTH, ground.h = SCREEN_HEIGHT / 2;
+	SDL_RenderFillRect(renderer, &ground);
+
+	drawWalls(renderer);
+	SDL_RenderPresent(renderer);
 }
