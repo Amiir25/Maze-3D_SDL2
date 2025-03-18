@@ -3,29 +3,30 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
-#include <math.h>
 #include <stdbool.h>
+#include <math.h>
 
+#ifndef M_PI
+    #define M_PI 3.14159265358979323846
+#endif
 
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 600
+#define MAP_WIDTH 8
+#define MAP_HEIGHT 8
 #define TILE_SIZE 64
 #define FOV 60
 #define NUM_RAYS SCREEN_WIDTH
 #define ROTATION_SPEED 5.0
 
-/* Window dimensions */
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
-
-/* Map dimensions */
-#define MAP_WIDTH 8
-#define MAP_HEIGHT 8
-
+/* Global variables */
 extern float playerX, playerY, playerAngle;
 extern int map[MAP_HEIGHT][MAP_WIDTH];
 
+/* Function prototypes */
+void loadMap(void);
+void handleInput(SDL_Event event);
 void render(SDL_Renderer *renderer);
 void drawWalls(SDL_Renderer *renderer);
-void handleInput(SDL_Event event);
-void loadMap();
 
 #endif /* MAZE_H */
