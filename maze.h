@@ -25,8 +25,9 @@ extern int map[MAP_HEIGHT][MAP_WIDTH];
 
 /* Function prototypes */
 void loadMap(void);
-void handleInput(SDL_Event event);
+void handleInput(void);
 void render(SDL_Renderer *renderer);
 void drawWalls(SDL_Renderer *renderer);
+bool checkCollision(float x, float y);
 
 #endif /* MAZE_H */
