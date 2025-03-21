@@ -25,7 +25,7 @@ extern float moveSpeed;
 extern int map[MAP_HEIGHT][MAP_WIDTH];
 
 /* Function prototypes */
-void loadMap(void);
+int loadMap(const char *filename);
 void handleInput(SDL_Event event);
 void render(SDL_Renderer *renderer);
 void drawWalls(SDL_Renderer *renderer);
