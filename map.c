@@ -40,7 +40,21 @@ int loadMap(const char *filename)
 		}
 		row++;
 	}
-
 	fclose(file);
+
+	/* Set player start position in first empty space */
+	for (row = 0; row < MAP_HEIGHT; row++)
+	{
+		for (col = 0; col < MAP_WIDTH; col++)
+		{
+			if (map[row][col] == 0) /* Found an open space */
+			{
+				playerX = col * TILE_SIZE + TILE_SIZE / 2;
+				playerY = row * TILE_SIZE + TILE_SIZE / 2;
+				printf("Player starts at: (%.2f, %.2f)\n", playerX, playerY);
+				return (1);
+			}
+		}
+	}
 	return (1);
 }
