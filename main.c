@@ -31,7 +31,7 @@ int main(void)
 		{
 			if (event.type == SDL_QUIT)
 				running = false;
-			handleInput(event);
+			handleInput();
 		}
 		render(renderer);
 	}
