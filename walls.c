@@ -38,3 +38,13 @@ int getWallTextureIndex(float angle)
         return SOUTH;
     return EAST;
 }
+
+/**
+ * Placeholder: Implement raycasting logic here
+ */
+
+float castRay(float angle) {
+    // Replace with actual raycasting logic
+    angle = 1.0;
+    return angle;
+}
