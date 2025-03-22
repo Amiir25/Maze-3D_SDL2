@@ -1,5 +1,10 @@
 #include "maze.h"
 
+// Define player variables
+float playerX = 0;
+float playerY = 0;
+float playerAngle = 0;
+
 /**
  * main - Entry point
  * @argc: Number of arguments
