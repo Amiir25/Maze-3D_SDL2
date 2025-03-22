@@ -11,10 +11,10 @@ void drawWalls(SDL_Renderer *renderer)
     for (int x = 0; x < SCREEN_WIDTH; x++)
     {
         float rayAngle = playerAngle + atan((x - SCREEN_WIDTH / 2) / 600.0);
-        int wallHeight = (int)(SCREEN_HEIGHT / castRay(rayAngle));
+        float distance = castRay(rayAngle);
+        int wallHeight = (int)(SCREEN_HEIGHT / (distance + 0.001)); // Avoid division by zero
 
         int wallTop = (SCREEN_HEIGHT / 2) - (wallHeight / 2);
-
         int textureIndex = getWallTextureIndex(rayAngle);
         SDL_Texture *wallTexture = wallTextures[textureIndex];
 
@@ -30,6 +30,9 @@ void drawWalls(SDL_Renderer *renderer)
  */
 int getWallTextureIndex(float angle)
 {
+    angle = fmod(angle, 360);
+    if (angle < 0) angle += 360;
+
     if (angle > 45 && angle <= 135)
         return NORTH;
     if (angle > 135 && angle <= 225)
@@ -40,11 +43,15 @@ int getWallTextureIndex(float angle)
 }
 
 /**
- * Placeholder: Implement raycasting logic here
+ * castRay - Casts a ray to determine wall distance.
+ * @angle: The ray angle.
+ * Return: Distance to the nearest wall.
  */
+float castRay(float angle)
+{
+    // Temporary usage to avoid compiler warning
+    (void)angle;
 
-float castRay(float angle) {
-    // Replace with actual raycasting logic
-    angle = 1.0;
-    return angle;
+    // Placeholder raycasting logic
+    return 1.0;
 }
