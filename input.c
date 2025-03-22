@@ -7,6 +7,7 @@ bool isShooting = false;
  * handleInput - Handles user input.
  * @event: The SDL event.
  */
+
 void handleInput(SDL_Event event)
 {
     if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
@@ -28,41 +29,34 @@ void handleInput(SDL_Event event)
 /**
  * updatePlayer - Moves the player based on input.
  */
+
 void updatePlayer(void)
 {
-    float moveStep = 3.0;
-    float rotationStep = 3.0;
+    float moveStep = PLAYER_SPEED;
+    float rotationStep = ROTATION_SPEED * (M_PI / 180.0); // Convert to radians
 
     if (keys[SDL_SCANCODE_W])
     {
-        playerX += cos(playerAngle * M_PI / 180.0) * moveStep;
-        playerY += sin(playerAngle * M_PI / 180.0) * moveStep;
+        playerX += cos(playerAngle) * moveStep;
+        playerY += sin(playerAngle) * moveStep;
     }
     if (keys[SDL_SCANCODE_S])
     {
-        playerX -= cos(playerAngle * M_PI / 180.0) * moveStep;
-        playerY -= sin(playerAngle * M_PI / 180.0) * moveStep;
+        playerX -= cos(playerAngle) * moveStep;
+        playerY -= sin(playerAngle) * moveStep;
     }
     if (keys[SDL_SCANCODE_A])
     {
-        playerX += cos((playerAngle - 90) * M_PI / 180.0) * moveStep;
-        playerY += sin((playerAngle - 90) * M_PI / 180.0) * moveStep;
+        playerX += cos(playerAngle - M_PI_2) * moveStep;
+        playerY += sin(playerAngle - M_PI_2) * moveStep;
     }
     if (keys[SDL_SCANCODE_D])
     {
-        playerX += cos((playerAngle + 90) * M_PI / 180.0) * moveStep;
-        playerY += sin((playerAngle + 90) * M_PI / 180.0) * moveStep;
+        playerX += cos(playerAngle + M_PI_2) * moveStep;
+        playerY += sin(playerAngle + M_PI_2) * moveStep;
     }
     if (keys[SDL_SCANCODE_LEFT])
         playerAngle -= rotationStep;
     if (keys[SDL_SCANCODE_RIGHT])
         playerAngle += rotationStep;
-}
-
-/**
- * Placeholder: Implement movement logic here
- */
-
-void updateMovement(void) {
-    // Placeholder: Implement movement logic here
 }
