@@ -58,3 +58,11 @@ void updatePlayer(void)
     if (keys[SDL_SCANCODE_RIGHT])
         playerAngle += rotationStep;
 }
+
+/**
+ * Placeholder: Implement movement logic here
+ */
+
+void updateMovement(void) {
+    // Placeholder: Implement movement logic here
+}
