@@ -17,6 +17,7 @@
 #define PLAYER_SPEED 3.0
 #define ROTATION_SPEED 3.0
 #define TILE_SIZE 64
+
 /* Directions for wall textures */
 #define NORTH 0
 #define SOUTH 1
@@ -30,6 +31,8 @@
 #ifndef M_PI
     #define M_PI 3.14159265358979323846
 #endif
+
+#define M_PI_2 (M_PI / 2)
 
 /* External variables */
 extern float playerX, playerY, playerAngle;
@@ -48,7 +51,6 @@ void freeTextures(void);
 
 void handleInput(SDL_Event event);
 void updatePlayer(void);
-void updateMovement(void);  /* FIXED: Added missing function */
 
 void render(SDL_Renderer *renderer);
 void drawWalls(SDL_Renderer *renderer);
@@ -58,7 +60,7 @@ float castRay(float angle);
 int getWallTextureIndex(float angle);
 
 void drawMinimap(SDL_Renderer *renderer);
-int loadMap(const char *filename);  /* FIXED: Added missing function */
+int loadMap(const char *filename);
 SDL_Texture *loadTexture(SDL_Renderer *renderer, const char *filePath);
 
 #endif /* MAZE_H */
