@@ -1,37 +1,46 @@
 #include "maze.h"
 
-/**
- * render - Renders the game scene, including sky, ground, and walls.
- * @renderer: The SDL renderer to use for drawing.
- */
+extern SDL_Texture *wallTextures[4];
+extern SDL_Texture *floorTexture;
+extern SDL_Texture *ceilingTexture;
+extern SDL_Texture *weaponTexture;
+extern bool isShooting;
 
+/**
+ * render - Renders the game scene.
+ * @renderer: The SDL renderer.
+ */
 void render(SDL_Renderer *renderer)
 {
-	SDL_Rect skyRect, groundRect; /* Declare variables at the top */
+    drawWalls(renderer);
+    drawFloorAndCeiling(renderer);
 
-	/* Clear screen */
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_RenderClear(renderer);
+    /* Shooting animation */
+    const char *weaponImg = isShooting ? "textures/weapon_shoot.png" : "textures/weapon.png";
+    weaponTexture = loadTexture(renderer, weaponImg);
 
-	/* Draw sky */
-	skyRect.x = 0;
-	skyRect.y = 0;
-	skyRect.w = SCREEN_WIDTH;
-	skyRect.h = SCREEN_HEIGHT / 2;
-	SDL_SetRenderDrawColor(renderer, 135, 206, 235, 255); /* Light blue sky */
-	SDL_RenderFillRect(renderer, &skyRect);
+    /* Draw weapon */
+    if (weaponTexture)
+    {
+        SDL_Rect weaponRect = { SCREEN_WIDTH / 2 - 64, SCREEN_HEIGHT - 128, 128, 128 };
+        SDL_RenderCopy(renderer, weaponTexture, NULL, &weaponRect);
+    }
 
-	/* Draw ground */
-	groundRect.x = 0;
-	groundRect.y = SCREEN_HEIGHT / 2;
-	groundRect.w = SCREEN_WIDTH;
-	groundRect.h = SCREEN_HEIGHT / 2;
-	SDL_SetRenderDrawColor(renderer, 34, 139, 34, 255); /* Green ground */
-	SDL_RenderFillRect(renderer, &groundRect);
+    SDL_RenderPresent(renderer);
+}
 
-	/* Draw walls */
-	drawWalls(renderer);
+/**
+ * drawFloorAndCeiling - Renders the floor and ceiling textures.
+ * @renderer: The SDL renderer.
+ */
+void drawFloorAndCeiling(SDL_Renderer *renderer)
+{
+    SDL_Rect floorRect = { 0, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT / 2 };
+    SDL_Rect ceilingRect = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 2 };
 
-	/* Present the final rendering */
-	SDL_RenderPresent(renderer);
+    if (floorTexture)
+        SDL_RenderCopy(renderer, floorTexture, NULL, &floorRect);
+
+    if (ceilingTexture)
+        SDL_RenderCopy(renderer, ceilingTexture, NULL, &ceilingRect);
 }
