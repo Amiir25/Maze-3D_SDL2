@@ -12,6 +12,7 @@ float playerAngle = 0;
  *
  * Return: Always 0 (Success)
  */
+
 int main(int argc, char *argv[])
 {
     SDL_Window *window;
@@ -52,7 +53,7 @@ int main(int argc, char *argv[])
 
             handleInput(event);
         }
-	updateMovement();
+        updatePlayer();
         render(renderer);
     }
 
