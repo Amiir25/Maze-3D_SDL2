@@ -1,51 +1,56 @@
 #include "maze.h"
 
-SDL_Texture *wallTextures[4];
-SDL_Texture *floorTexture = NULL;
+/* Define global textures */
 SDL_Texture *ceilingTexture = NULL;
-SDL_Texture *weaponTexture = NULL;
+SDL_Texture *floorTexture = NULL;
+SDL_Texture *wallTextures[4] = {NULL, NULL, NULL, NULL};
 
 /**
- * loadTexture - Loads an image as an SDL texture.
- * @renderer: The SDL renderer.
- * @file: Path to the image file.
- * Return: The SDL_Texture or NULL on failure.
+ * loadTexture - Loads a texture from file
+ * @renderer: The SDL renderer
+ * @filename: Path to the texture file
+ *
+ * Return: Pointer to the loaded texture, or NULL on failure
  */
-SDL_Texture *loadTexture(SDL_Renderer *renderer, const char *file)
+SDL_Texture *loadTexture(SDL_Renderer *renderer, const char *filename)
 {
-    SDL_Texture *texture = NULL;
-    SDL_Surface *surface = IMG_Load(file);
-
+    SDL_Surface *surface = IMG_Load(filename);
     if (!surface)
     {
-        printf("Error loading texture %s: %s\n", file, IMG_GetError());
+        fprintf(stderr, "Error loading texture %s: %s\n", filename, IMG_GetError());
         return NULL;
     }
-    texture = SDL_CreateTextureFromSurface(renderer, surface);
+
+    SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
+
+    if (!texture)
+    {
+        fprintf(stderr, "Error creating texture from %s: %s\n", filename, SDL_GetError());
+    }
 
     return texture;
 }
 
 /**
- * loadTextures - Loads textures for walls, floor, ceiling, and weapons.
- * @renderer: The SDL renderer.
- * Return: 1 if successful, 0 on failure.
+ * loadTextures - Loads all textures for walls, floor, and ceiling.
+ * @renderer: The SDL renderer
+ *
+ * Return: 1 on success, 0 on failure
  */
 int loadTextures(SDL_Renderer *renderer)
 {
-    wallTextures[NORTH] = loadTexture(renderer, "textures/wall_north.png");
-    wallTextures[SOUTH] = loadTexture(renderer, "textures/wall_south.png");
-    wallTextures[EAST]  = loadTexture(renderer, "textures/wall_east.png");
-    wallTextures[WEST]  = loadTexture(renderer, "textures/wall_west.png");
-    floorTexture = loadTexture(renderer, "textures/floor.png");
     ceilingTexture = loadTexture(renderer, "textures/ceiling.png");
-    weaponTexture = loadTexture(renderer, "textures/weapon.png");
+    floorTexture = loadTexture(renderer, "textures/floor.png");
+    wallTextures[0] = loadTexture(renderer, "textures/wall_north.png");
+    wallTextures[1] = loadTexture(renderer, "textures/wall_south.png");
+    wallTextures[2] = loadTexture(renderer, "textures/wall_east.png");
+    wallTextures[3] = loadTexture(renderer, "textures/wall_west.png");
 
-    if (!wallTextures[NORTH] || !wallTextures[SOUTH] || !wallTextures[EAST] ||
-        !wallTextures[WEST] || !floorTexture || !ceilingTexture || !weaponTexture)
+    if (!ceilingTexture || !floorTexture ||
+        !wallTextures[0] || !wallTextures[1] ||
+        !wallTextures[2] || !wallTextures[3])
     {
-        printf("Failed to load textures!\n");
         return 0;
     }
     return 1;
@@ -54,12 +59,12 @@ int loadTextures(SDL_Renderer *renderer)
 /**
  * freeTextures - Frees all loaded textures.
  */
-void freeTextures(void)
+void freeTextures()
 {
-    SDL_DestroyTexture(floorTexture);
-    SDL_DestroyTexture(ceilingTexture);
-    SDL_DestroyTexture(weaponTexture);
-
+    if (ceilingTexture) SDL_DestroyTexture(ceilingTexture);
+    if (floorTexture) SDL_DestroyTexture(floorTexture);
     for (int i = 0; i < 4; i++)
-        SDL_DestroyTexture(wallTextures[i]);
+    {
+        if (wallTextures[i]) SDL_DestroyTexture(wallTextures[i]);
+    }
 }
