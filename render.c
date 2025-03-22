@@ -1,11 +1,5 @@
 #include "maze.h"
 
-extern SDL_Texture *wallTextures[4];
-extern SDL_Texture *floorTexture;
-extern SDL_Texture *ceilingTexture;
-extern SDL_Texture *weaponTexture;
-extern bool isShooting;
-
 /**
  * render - Renders the game scene.
  * @renderer: The SDL renderer.
