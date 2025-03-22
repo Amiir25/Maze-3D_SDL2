@@ -1,10 +1,5 @@
 #include "maze.h"
 
-// Define player variables
-float playerX = 0;
-float playerY = 0;
-float playerAngle = 0;
-
 /**
  * main - Entry point
  * @argc: Number of arguments
@@ -12,7 +7,6 @@ float playerAngle = 0;
  *
  * Return: Always 0 (Success)
  */
-
 int main(int argc, char *argv[])
 {
     SDL_Window *window;
@@ -53,7 +47,7 @@ int main(int argc, char *argv[])
 
             handleInput(event);
         }
-        updatePlayer();
+	updateMovement();
         render(renderer);
     }
 
