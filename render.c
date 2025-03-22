@@ -1,46 +1,27 @@
 #include "maze.h"
 
 /**
- * render - Renders the game scene.
- * @renderer: The SDL renderer.
+ * render - Renders the game scene, including textured sky, ground, and walls.
+ * @renderer: The SDL renderer to use for drawing.
  */
-
 void render(SDL_Renderer *renderer)
 {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-    SDL_RenderClear(renderer);
+    SDL_Rect destRect;
 
-    drawFloorAndCeiling(renderer);
+    /* Draw ceiling */
+    destRect.x = 0;
+    destRect.y = 0;
+    destRect.w = SCREEN_WIDTH;
+    destRect.h = SCREEN_HEIGHT / 2;
+    SDL_RenderCopy(renderer, ceilingTexture, NULL, &destRect);
+
+    /* Draw floor */
+    destRect.y = SCREEN_HEIGHT / 2;
+    SDL_RenderCopy(renderer, floorTexture, NULL, &destRect);
+
+    /* Draw walls */
     drawWalls(renderer);
-    drawMinimap(renderer);
 
-    /* Shooting animation */
-    const char *weaponImg = isShooting ? "textures/weapon_shoot.png" : "textures/weapon.png";
-    SDL_Texture *weaponTexture = loadTexture(renderer, weaponImg);
-
-    /* Draw weapon */
-    if (weaponTexture)
-    {
-        SDL_Rect weaponRect = { SCREEN_WIDTH / 2 - 64, SCREEN_HEIGHT - 128, 128, 128 };
-        SDL_RenderCopy(renderer, weaponTexture, NULL, &weaponRect);
-    }
-
+    /* Present the final rendering */
     SDL_RenderPresent(renderer);
-}
-
-/**
- * drawFloorAndCeiling - Renders the floor and ceiling.
- * @renderer: The SDL renderer.
- */
-
-void drawFloorAndCeiling(SDL_Renderer *renderer)
-{
-    SDL_Rect floorRect = { 0, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT / 2 };
-    SDL_Rect ceilingRect = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 2 };
-
-    SDL_SetRenderDrawColor(renderer, 150, 150, 150, 255); // Gray ceiling
-    SDL_RenderFillRect(renderer, &ceilingRect);
-
-    SDL_SetRenderDrawColor(renderer, 50, 50, 50, 255); // Dark floor
-    SDL_RenderFillRect(renderer, &floorRect);
 }
