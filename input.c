@@ -1,65 +1,60 @@
 #include "maze.h"
 
-float playerX = 100, playerY = 100;
-float playerAngle = 0.0;
-float moveSpeed = 5.0;
+bool keys[SDL_NUM_SCANCODES];
+bool isShooting = false;
 
 /**
- * handleInput - Handles keyboard inputs to control player movement and rotation.
- * @event: The SDL_Event structure containing input data.
+ * handleInput - Handles user input.
+ * @event: The SDL event.
  */
 void handleInput(SDL_Event event)
 {
-	float newX, newY;
-	float radAngle;
-	float dx, dy;
-	int mapX, mapY;
+    if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
+    {
+        keys[event.key.keysym.scancode] = true;
 
-	if (event.type == SDL_KEYDOWN)
-	{
-		newX = playerX;
-		newY = playerY;
-		radAngle = playerAngle * M_PI / 180.0;
-		dx = cos(radAngle) * moveSpeed;
-		dy = sin(radAngle) * moveSpeed;
+        if (event.key.keysym.scancode == SDL_SCANCODE_SPACE)
+            isShooting = true;
+    }
+    else if (event.type == SDL_KEYUP)
+    {
+        keys[event.key.keysym.scancode] = false;
 
-		if (event.key.keysym.sym == SDLK_LEFT)
-			playerAngle -= ROTATION_SPEED;
-		else if (event.key.keysym.sym == SDLK_RIGHT)
-			playerAngle += ROTATION_SPEED;
-		else if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
-		{
-			newX += dx;
-			newY += dy;
-		}
-		else if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
-		{
-			newX -= dx;
-			newY -= dy;
-		}
-		else if (event.key.keysym.sym == SDLK_a)
-		{
-			/* Strafe left */
-			newX -= dy;
-			newY += dx;
-		}
-		else if (event.key.keysym.sym == SDLK_d)
-		{
-			/* Strafe right */
-			newX += dy;
-			newY -= dx;
-		}
+        if (event.key.keysym.scancode == SDL_SCANCODE_SPACE)
+            isShooting = false;
+    }
+}
 
-		/* Prevent walking into walls */
-		mapX = (int)(newX / TILE_SIZE);
-		mapY = (int)(newY / TILE_SIZE);
+/**
+ * updatePlayer - Moves the player based on input.
+ */
+void updatePlayer(void)
+{
+    float moveStep = 3.0;
+    float rotationStep = 3.0;
 
-		if (mapX >= 0 && mapX < MAP_WIDTH &&
-		    mapY >= 0 && mapY < MAP_HEIGHT &&
-		    map[mapY][mapX] == 0)
-		{
-			playerX = newX;
-			playerY = newY;
-		}
-	}
+    if (keys[SDL_SCANCODE_W])
+    {
+        playerX += cos(playerAngle * M_PI / 180.0) * moveStep;
+        playerY += sin(playerAngle * M_PI / 180.0) * moveStep;
+    }
+    if (keys[SDL_SCANCODE_S])
+    {
+        playerX -= cos(playerAngle * M_PI / 180.0) * moveStep;
+        playerY -= sin(playerAngle * M_PI / 180.0) * moveStep;
+    }
+    if (keys[SDL_SCANCODE_A])
+    {
+        playerX += cos((playerAngle - 90) * M_PI / 180.0) * moveStep;
+        playerY += sin((playerAngle - 90) * M_PI / 180.0) * moveStep;
+    }
+    if (keys[SDL_SCANCODE_D])
+    {
+        playerX += cos((playerAngle + 90) * M_PI / 180.0) * moveStep;
+        playerY += sin((playerAngle + 90) * M_PI / 180.0) * moveStep;
+    }
+    if (keys[SDL_SCANCODE_LEFT])
+        playerAngle -= rotationStep;
+    if (keys[SDL_SCANCODE_RIGHT])
+        playerAngle += rotationStep;
 }
