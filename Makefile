@@ -1,13 +1,15 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -std=c90
-LDFLAGS = -lSDL2 -lSDL2_image -lm
-OBJ = main.o input.o render.o walls.o map.o minimap.o textures.o
+CFLAGS = -Wall -Werror -Wextra -pedantic -std=c99 -I.
+LDFLAGS = -lSDL2 -lm
 
-maze: $(OBJ)
-	$(CC) $(CFLAGS) -o maze $(OBJ) $(LDFLAGS)
+SRC = main.c map.c input.c render.c walls.c
+OBJ = $(SRC:.c=.o)
+TARGET = maze
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+all: $(TARGET)
+
+$(TARGET): $(OBJ)
+	$(CC) $(OBJ) -o $(TARGET) $(LDFLAGS)
 
 clean:
-	rm -f *.o maze
+	rm -f $(OBJ) $(TARGET)

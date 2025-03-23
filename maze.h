@@ -7,34 +7,25 @@
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
-
-#define MAP_WIDTH 10
-#define MAP_HEIGHT 10
+#define MAP_WIDTH 8
+#define MAP_HEIGHT 8
 #define TILE_SIZE 64
+#define FOV 60
+#define NUM_RAYS SCREEN_WIDTH
+#define ROTATION_SPEED 5.0
 
-#define MINIMAP_TILE_SIZE 8
-#define MINIMAP_SCALE 0.125  /* 1/8 scale for minimap */
+#ifndef M_PI
+    #define M_PI 3.14159265358979323846
+#endif
 
-#define MOVE_SPEED 5.0
-#define ROTATION_SPEED 3.0
-
-/* Global Variables */
+/* Global variables */
 extern float playerX, playerY, playerAngle;
 extern int map[MAP_HEIGHT][MAP_WIDTH];
-extern bool minimapEnabled;
 
-/* Function Declarations */
+/* Function prototypes */
+void loadMap(void);
 void handleInput(SDL_Event event);
-void updateMovement(void);
 void render(SDL_Renderer *renderer);
 void drawWalls(SDL_Renderer *renderer);
-void drawMinimap(SDL_Renderer *renderer);
-bool loadTextures(SDL_Renderer *renderer);
-void freeTextures(void);
-
-/* Textures */
-extern SDL_Texture *wallTextures[4];
-extern SDL_Texture *ceilingTexture;
-extern SDL_Texture *floorTexture;
 
 #endif /* MAZE_H */
