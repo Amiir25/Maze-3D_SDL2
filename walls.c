@@ -1,15 +1,14 @@
 #include "maze.h"
 
 /**
- * drawWalls - Uses raycasting to draw walls.
+ * drawWalls - Uses raycasting to draw textured walls.
  * @renderer: The SDL renderer.
  */
-
 void drawWalls(SDL_Renderer *renderer)
 {
 	int x, mapX, mapY, wallHeight, wallTop, wallBottom;
-	bool isVerticalWall;
 	float rayAngle, rayAngleRad, rayX, rayY, deltaX, deltaY, dist;
+	SDL_Rect srcRect, destRect;
 
 	for (x = 0; x < NUM_RAYS; x++)
 	{
@@ -20,7 +19,6 @@ void drawWalls(SDL_Renderer *renderer)
 		rayY = playerY;
 		deltaX = cos(rayAngleRad);
 		deltaY = sin(rayAngleRad);
-		isVerticalWall = false;
 
 		/* Perform raycasting */
 		while (1)
@@ -32,7 +30,6 @@ void drawWalls(SDL_Renderer *renderer)
 			    mapY < 0 || mapY >= MAP_HEIGHT ||
 			    map[mapY][mapX] == 1)
 			{
-				isVerticalWall = fabs(deltaX) > fabs(deltaY);
 				break;
 			}
 			rayX += deltaX;
@@ -41,8 +38,8 @@ void drawWalls(SDL_Renderer *renderer)
 
 		/* Correct fish-eye distortion */
 		dist = sqrt(pow(rayX - playerX, 2) + pow(rayY - playerY, 2));
-		dist *= cos((rayAngle - playerAngle) * M_PI / 180.0); /* Adjust for fish-eye */
-		wallHeight = (int)(TILE_SIZE * SCREEN_HEIGHT / (dist + 0.0001)); /* Avoid div by zero */
+		dist *= cos((rayAngle - playerAngle) * M_PI / 180.0);
+		wallHeight = (int)(TILE_SIZE * SCREEN_HEIGHT / (dist + 0.0001));
 
 		/* Compute wall boundaries */
 		wallTop = (SCREEN_HEIGHT / 2) - (wallHeight / 2);
@@ -52,12 +49,25 @@ void drawWalls(SDL_Renderer *renderer)
 		if (wallBottom > SCREEN_HEIGHT)
 			wallBottom = SCREEN_HEIGHT;
 
-		/* Color walls differently based on orientation */
-		if (isVerticalWall)
-			SDL_SetRenderDrawColor(renderer, 80, 80, 80, 255); /* Dark Gray */
-		else
-			SDL_SetRenderDrawColor(renderer, 160, 160, 160, 255); /* Light Gray */
+		/* Select texture portion */
+		srcRect.y = 0;
+		srcRect.w = 64; /* Texture width */
+		srcRect.h = 64; /* Texture height */
+		srcRect.x = (int)(rayX) % 64; /* Sample column from texture */
 
-		SDL_RenderDrawLine(renderer, x, wallTop, x, wallBottom);
+		/* Destination rectangle */
+		destRect.x = x;
+		destRect.y = wallTop;
+		destRect.w = 1;
+		destRect.h = wallBottom - wallTop;
+
+		/* Render wall */
+		if (wallTexture)
+			SDL_RenderCopy(renderer, wallTexture, &srcRect, &destRect);
+		else
+		{
+			SDL_SetRenderDrawColor(renderer, 80, 80, 80, 255);
+			SDL_RenderDrawLine(renderer, x, wallTop, x, wallBottom);
+		}
 	}
 }
