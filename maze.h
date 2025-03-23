@@ -20,6 +20,13 @@
 #define NUM_RAYS SCREEN_WIDTH
 #define ROTATION_SPEED 5.0
 
+extern SDL_Texture *wall_north;
+extern SDL_Texture *wall_south;
+extern SDL_Texture *wall_east;
+extern SDL_Texture *wall_west;
+extern SDL_Texture *floor_texture;
+extern SDL_Texture *ceiling_texture;
+
 /* Global variables */
 extern float playerX, playerY, playerAngle;
 extern float moveSpeed;
@@ -37,5 +44,7 @@ void freeTextures();
 void handleInput(SDL_Event event);
 void render(SDL_Renderer *renderer);
 void drawWalls(SDL_Renderer *renderer);
+void drawFloorAndCeiling(SDL_Renderer *renderer);
+
 
 #endif /* MAZE_H */
