@@ -11,8 +11,8 @@
 #define M_PI 3.14159265358979323846
 #endif
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
+#define SCREEN_WIDTH 1400
+#define SCREEN_HEIGHT 700
 #define MAP_WIDTH 8
 #define MAP_HEIGHT 8
 #define TILE_SIZE 64
@@ -45,6 +45,5 @@ void handleInput(SDL_Event event);
 void render(SDL_Renderer *renderer);
 void drawWalls(SDL_Renderer *renderer);
 void drawFloorAndCeiling(SDL_Renderer *renderer);
-
 
 #endif /* MAZE_H */
