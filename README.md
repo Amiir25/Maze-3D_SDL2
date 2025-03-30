@@ -1,4 +1,4 @@
-🎮 3D Maze Game  
+🎮 Maze 3D Game  
 
 ## Introduction  
 Welcome to **3D Maze Game**, a first-person maze exploration game built using **C, SDL2, and Raycasting**. Navigate through a labyrinth and find the exit!  
