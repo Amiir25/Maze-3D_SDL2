@@ -12,7 +12,7 @@ Project Blog: [Read Here](#)
 
 ## Screenshots
  
-(textures/image-1.PNG)
+(https://github.com/user-attachments/assets/627aae5f-e72c-413b-8887-d2ba0edec914)
 (textures/image-2.PNG)
 
 ---
