@@ -27,10 +27,10 @@ Project Blog: [Read Here](#)
 
 ## Installation  
 
-1️⃣ Clone the Repository  
-2️⃣ Install Dependencies: Make sure SDL2 and SDL2_image are installed on your system.
-3️⃣ Build the Game
-4️⃣ Run the Game
+1️ Clone the Repository  
+2️ Install Dependencies: Make sure SDL2 and SDL2_image are installed on your system.
+3️ Build the Game
+4️ Run the Game
 
 ---
 
