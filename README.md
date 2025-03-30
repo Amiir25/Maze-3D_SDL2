@@ -12,8 +12,8 @@ Project Blog: [Read Here](#)
 
 ## Screenshots
  
-([Image-1](https://github.com/user-attachments/assets/627aae5f-e72c-413b-8887-d2ba0edec914))
-Image-2
+[Image-1](https://github.com/user-attachments/assets/627aae5f-e72c-413b-8887-d2ba0edec914)
+[Image-2](https://github.com/user-attachments/assets/6a42a370-9bb1-451a-8f1d-3ecd1b483547)
 
 ---
 
