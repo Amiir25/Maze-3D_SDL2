@@ -16,33 +16,69 @@ int loadTextures(SDL_Renderer *renderer)
 {
     SDL_Surface *surface;
 
+    /* Load the north wall texture */
     surface = IMG_Load("textures/wall_north.png");
-    if (!surface) { printf("Error loading wall_north.png: %s\n", IMG_GetError()); return 0; }
+    if (!surface) 
+    { 
+        /* Handle error if the texture fails to load */
+        printf("Error loading wall_north.png: %s\n", IMG_GetError()); 
+        return 0; 
+    }
     wall_north = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
 
+    /* Load the south wall texture */
     surface = IMG_Load("textures/wall_south.png");
-    if (!surface) { printf("Error loading wall_south.png: %s\n", IMG_GetError()); return 0; }
+    if (!surface) 
+    { 
+        /* Handle error if the texture fails to load */
+        printf("Error loading wall_south.png: %s\n", IMG_GetError()); 
+        return 0; 
+    }
     wall_south = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
 
+    /* Load the east wall texture */
     surface = IMG_Load("textures/wall_east.png");
-    if (!surface) { printf("Error loading wall_east.png: %s\n", IMG_GetError()); return 0; }
+    if (!surface) 
+    { 
+        /* Handle error if the texture fails to load */
+        printf("Error loading wall_east.png: %s\n", IMG_GetError()); 
+        return 0; 
+    }
     wall_east = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
 
+    /* Load the west wall texture */
     surface = IMG_Load("textures/wall_west.png");
-    if (!surface) { printf("Error loading wall_west.png: %s\n", IMG_GetError()); return 0; }
+    if (!surface) 
+    { 
+        /* Handle error if the texture fails to load */
+        printf("Error loading wall_west.png: %s\n", IMG_GetError()); 
+        return 0; 
+    }
     wall_west = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
 
+    /* Load the floor texture */
     surface = IMG_Load("textures/floor.png");
-    if (!surface) { printf("Error loading floor.png: %s\n", IMG_GetError()); return 0; }
+    if (!surface) 
+    { 
+        /* Handle error if the texture fails to load */
+        printf("Error loading floor.png: %s\n", IMG_GetError()); 
+        return 0; 
+    }
     floor_texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
 
+    /* Load the ceiling texture */
     surface = IMG_Load("textures/ceiling.png");
-    if (!surface) { printf("Error loading ceiling.png: %s\n", IMG_GetError()); return 0; }
+    if (!surface) 
+    { 
+        /* Handle error if the texture fails to load */
+        printf("Error loading ceiling.png: %s\n", IMG_GetError()); 
+        return 0; 
+    }
     ceiling_texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
 
