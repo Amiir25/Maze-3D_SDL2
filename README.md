@@ -12,7 +12,8 @@ Project Blog: [Read Here](#)
 
 ## Screenshots
  
-(screenshot.png)  
+(textures/image-1.PNG)
+(textures/image-2.PNG)
 
 ---
 
@@ -87,7 +88,7 @@ Week 3: Added textures & refined game logic
 
 ---
 
-##Contributing
+## Contributing
 Want to improve this project? Follow these steps:
 - Fork the repository
 - Create a new branch
