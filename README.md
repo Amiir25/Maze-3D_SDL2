@@ -102,7 +102,7 @@ Want to improve this project? Follow these steps:
 
 ---
 
-##License
+## License
 This project is licensed under the MIT License.
 
 ## Author
