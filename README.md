@@ -1,7 +1,7 @@
 🎮 Maze 3D Game  
 
 ## Introduction  
-Welcome to **3D Maze Game**, a first-person maze exploration game built using **C, SDL2, and Raycasting**. Navigate through a labyrinth and find the exit!  
+Welcome to **Maze 3D Game**, a first-person maze exploration game built using **C, SDL2, and Raycasting**. Navigate through a labyrinth and find the exit!  
 
 This project was developed as part of my Software Engineering Portfolio Project. It showcases fundamental raycasting techniques, player movement mechanics, and 2D-to-3D rendering using SDL2.  
 
