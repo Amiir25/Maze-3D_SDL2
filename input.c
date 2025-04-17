@@ -16,7 +16,7 @@ void handleInput(SDL_Event event)
 	float dx, dy;
 	int mapX, mapY;
 
-	/* Check if a key is pressed */
+	/* Check if key is pressed */
 	if (event.type == SDL_KEYDOWN)
 	{
 		newX = playerX;
