@@ -17,9 +17,10 @@ int loadMap(const char *filename)
 	int row = 0, col;
 
 	file = fopen(filename, "r");
+
+	/* Check if the file failed to open */
 	if (!file)
 	{
-		/* Check if the file failed to open */
 		fprintf(stderr, "Error: Could not open map file %s\n", filename);
 		return (0);
 	}
