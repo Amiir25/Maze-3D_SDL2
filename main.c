@@ -1,7 +1,7 @@
 #include "maze.h"
 
 /**
- * main - Entry point
+ * main - Entry point of the program
  * @argc: Number of arguments
  * @argv: Argument values
  *
