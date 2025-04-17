@@ -48,7 +48,7 @@ int loadMap(const char *filename)
 	}
 	fclose(file);
 
-	/* Locate an empty space to set the player's start position */
+	/* Locate empty space to set the player's start position */
 	for (row = 0; row < MAP_HEIGHT; row++)
 	{
 		/* Iterate through columns to find an open space */
