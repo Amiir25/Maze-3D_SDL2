@@ -33,7 +33,7 @@ void drawFloorAndCeiling(SDL_Renderer *renderer)
 
 /**
  * render - Renders the game frame.
- * @renderer: The SDL renderer.
+ * @renderer: SDL renderer.
  */
 void render(SDL_Renderer *renderer)
 {
