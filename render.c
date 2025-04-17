@@ -2,7 +2,7 @@
 
 /**
  * drawFloorAndCeiling - Draws the textured floor and ceiling.
- * @renderer: The SDL renderer.
+ * @renderer: SDL renderer.
  */
 
 void drawFloorAndCeiling(SDL_Renderer *renderer)
