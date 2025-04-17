@@ -10,7 +10,7 @@ SDL_Texture *ceiling_texture;
 /**
  * loadTextures - Loads textures for walls, floor, and ceiling.
  * @renderer: The SDL renderer.
- * Return: 1 on success, 0 on failure.
+ * Return: 1 for success, 0 otherwise.
  */
 int loadTextures(SDL_Renderer *renderer)
 {
