@@ -5,7 +5,7 @@ float playerAngle = 0.0;
 float moveSpeed = 5.0;
 
 /**
- * handleInput - Handles keyboard inputs to control player movement and rotation.
+ * handleInput - Handles keyboard inputs to control player movements and rotations.
  * @event: The SDL_Event structure containing input data.
  */
 
