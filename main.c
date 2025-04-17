@@ -2,7 +2,7 @@
 
 /**
  * main - Entry point of the program
- * @argc: Number of arguments
+ * @argc: Number of arguments passed
  * @argv: Argument values
  *
  * Return: Always 0 (Success)
